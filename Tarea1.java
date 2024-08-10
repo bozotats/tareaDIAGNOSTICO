@@ -109,7 +109,7 @@ public class Tarea1 {
 
         static ArrayList<Float> listElementsSquared(ArrayList<Float> inList) {
 
-            ArrayList<Float> outq = new ArrayList<Float>();
+            ArrayList<Float> outList Float>();
 
             for (int i = 0; i<inList.size(); i++){
                 outList.add(inList.get(i) * inList.get(i));
