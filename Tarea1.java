@@ -109,7 +109,7 @@ public class Tarea1 {
 
         static ArrayList<Float> listElementsSquared(ArrayList<Float> inList) {
 
-            ArrayList<Float> outList = new ArrayList<Float>();
+            ArrayList<Float> outq = new ArrayList<Float>();
 
             for (int i = 0; i<inList.size(); i++){
                 outList.add(inList.get(i) * inList.get(i));
@@ -135,7 +135,7 @@ public class Tarea1 {
         }
 
         static float divideElementsbySD() {
-            
+
         }
 
         static float covariance(ArrayList<Float> inList1,ArrayList<Float> inList2) {
