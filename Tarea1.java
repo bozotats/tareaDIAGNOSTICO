@@ -134,7 +134,13 @@ public class Tarea1 {
 
         }
 
-        static float divideElementsbySD() {
+        static ArrayList<Float> divideElementsbySD(ArrayList<Float> inList, float StndDeviValue) {
+            ArrayList<Float> dividedlist = new ArrayList<Float>();
+            for (int i = 0; i < inList.size(); i++) {
+                dicidedlist.add(inList.get(i) / StndDeviValue);
+            }
+
+            return dividedlist;
 
         }
 
