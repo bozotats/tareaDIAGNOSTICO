@@ -156,12 +156,30 @@ public class Tarea1 {
         avgMarketing = totalmarketing / marketingSpend.size();
         avgProfit = totalprofit / profit.size();
 
-        
-        
+        float SDevProfit = SDfromsum(listElementsSquared(listMinusItsAverage(profit, avgProfit)));
+        float SDevMarketing = SDfromsum(listElementsSquared(listMinusItsAverage(marketingSpend, avgMarketing)));
+        float SDevRND = SDfromsum(listElementsSquared(listMinusItsAverage(rdSpend, avgRND)));
 
-        System.out.println(rdSpend.toString());
-        System.out.println(marketingSpend.toString());
-        System.out.println(profit.toString());
+        ArrayList<Float> zedProfitList = new ArrayList<>();
+        ArrayList<Float> zedRNDList = new ArrayList<>();
+        ArrayList<Float> zedMarketingList = new ArrayList<>();
+
+        zedProfitList = divideElementsbySD(listMinusItsAverage(profit, avgProfit), SDevProfit);
+        zedRNDList = divideElementsbySD(listMinusItsAverage(rdSpend, avgRND), SDevRND);
+        zedMarketingList = divideElementsbySD(listMinusItsAverage(marketingSpend, avgMarketing), SDevMarketing);
+
+        float covProfitRND = covariance(zedProfitList, zedRNDList);
+        float covProfitMarketing = covariance(zedProfitList, zedMarketingList);    
+        
+        float correlacionRNDProfit = covProfitRND / (rdSpend.size() - 1);
+        float correlacionMarketingProfit = covProfitMarketing / (marketingSpend.size() - 1);
+
+        System.out.println("la correlacion de pearson entre RD spent y profit es de: " + correlacionRNDProfit);
+        System.out.println("la correlacion de pearson entre Marketing spent y profit es de: " + correlacionMarketingProfit);
+
+        //System.out.println(rdSpend.toString());
+        //System.out.println(marketingSpend.toString());
+        //System.out.println(profit.toString());
 
     }
 }
