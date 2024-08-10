@@ -3,6 +3,67 @@ import java.util.ArrayList;
 import java.lang.Math;
 
 public class Tarea1 {
+    
+    static ArrayList<Float> listMinusItsAverage(ArrayList<Float> inList , Float listAverage) {
+
+        ArrayList<Float> outList = new ArrayList<Float>();
+        
+        for (int i = 0; i<inList.size(); i++) {
+            outList.add(inList.get(i) - listAverage);    
+        }
+
+        return outList;
+
+    }
+
+    static ArrayList<Float> listElementsSquared(ArrayList<Float> inList) {
+
+        ArrayList<Float> outList = new ArrayList<Float>();
+
+        for (int i = 0; i<inList.size(); i++){
+            outList.add(inList.get(i) * inList.get(i));
+        }
+
+        return outList;
+
+    }
+
+    static float SDfromsum(ArrayList<Float> inList) {
+        double outFloat = 0;
+
+        for (int i = 0; i<inList.size(); i++) {
+        outFloat = outFloat + inList.get(i);
+        }
+
+        outFloat = outFloat / inList.size();
+
+        outFloat = Math.sqrt(outFloat);
+        
+        return (float) outFloat;
+
+    }
+
+    static ArrayList<Float> divideElementsbySD(ArrayList<Float> inList, float StndDeviValue) {
+        ArrayList<Float> dividedlist = new ArrayList<Float>();
+        for (int i = 0; i < inList.size(); i++) {
+            dividedlist.add(inList.get(i) / StndDeviValue);
+        }
+
+        return dividedlist;
+
+    }
+
+    static float covariance(ArrayList<Float> inList1,ArrayList<Float> inList2) {
+        float result = 0;
+        for (int i = 0; i<inList1.size(); i++) {
+            result = result + (inList1.get(i) * inList2.get(i));
+        }
+
+        result = result /(inList1.size() - 1);
+
+        return result;
+    }
+
     public static void main(String[] args) throws Exception{   
         File csv = new File("./startup-profit.csv");
         BufferedReader reader = new BufferedReader(new FileReader(csv));
@@ -91,69 +152,11 @@ public class Tarea1 {
 
          
 
-        avgRND = totalRND / rdSpend.size()
-        avgMarketing = totalmarketing / marketingSpend.size()
-        avgProfit = totalprofit / profit.size()
+        avgRND = totalRND / rdSpend.size();
+        avgMarketing = totalmarketing / marketingSpend.size();
+        avgProfit = totalprofit / profit.size();
 
-        static ArrayList<Float> listMinusItsAverage(ArrayList<Float> inList, Float listAverage) {
-
-            ArrayList<Float> outList = new ArrayList<Float>();
-            
-            for (int i = 0; i<inList.size(); i++) {
-                outList.add(inList.get(i) - listAverage);    
-            }
-
-            return outList;
-
-        }
-
-        static ArrayList<Float> listElementsSquared(ArrayList<Float> inList) {
-
-            ArrayList<Float> outList Float>();
-
-            for (int i = 0; i<inList.size(); i++){
-                outList.add(inList.get(i) * inList.get(i));
-            }
-
-            return outList;
-
-        }
         
-        static float SDfromsum(ArrayList<Float> inList) {
-            float outFloat = 0;
-
-            for (int i = 0; i<inList.size(); i++) {
-            outFloat = outFloat + inList.get(i);
-            }
-
-            outFloat = outFloat / inList.size();
-
-            outFloat = Math.sqrt(outFloat);
-            
-            return outFloat;
-
-        }
-
-        static ArrayList<Float> divideElementsbySD(ArrayList<Float> inList, float StndDeviValue) {
-            ArrayList<Float> dividedlist = new ArrayList<Float>();
-            for (int i = 0; i < inList.size(); i++) {
-                dicidedlist.add(inList.get(i) / StndDeviValue);
-            }
-
-            return dividedlist;
-
-        }
-
-        static float covariance(ArrayList<Float> inList1,ArrayList<Float> inList2) {
-            float result = 0;
-            for (int i = 0; i<inList1.size(); i++) {
-                result = result + (inList1.get(i) * inList2.get(i))
-            }
-
-            result = result /(inList1.size() - 1)
-
-            return result;
-        }
         
 
         System.out.println(rdSpend.toString());
