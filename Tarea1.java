@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.lang.Math;
+import java.lang.Math;  
 
 public class Tarea1 {
     
@@ -73,17 +73,9 @@ public class Tarea1 {
         float tempnumber = 0;
         
         ArrayList<Float> rdSpend = new ArrayList<Float>();
-        float totalRND = 0;
-        float avgRND = 0;
-        
-
         ArrayList<Float> marketingSpend = new ArrayList<Float>();
-        float totalmarketing = 0;
-        float avgMarketing = 0;
-
         ArrayList<Float> profit = new ArrayList<Float>();
-        float totalprofit = 0;
-        float avgProfit = 0;
+        
         
         ArrayList<Integer> commaPlacement = new ArrayList<Integer>();
         
@@ -99,87 +91,44 @@ public class Tarea1 {
                     columnNumber++;
                     commaPlacement.add(i);
                     System.out.println(commaPlacement.toString());
-
                     switch(columnNumber) {
                     case 1:
-                    
                     tempnumber = Float.parseFloat(
                                 currentline.substring(
                                     0,commaPlacement.get(0)
                                 )
                             );
-                    
                     rdSpend.add(tempnumber);
-                    totalRND = totalRND + tempnumber;
-
                         break;
-                    case 3:
-                        
+                    case 3:                        
                             tempnumber = Float.valueOf(
                                 currentline.substring(
                                     commaPlacement.get(1)+1,commaPlacement.get(2)
                                 )
                             );
-
                             marketingSpend.add(tempnumber);
-                            totalmarketing = totalmarketing + tempnumber;
-                        
                         break;
-                        
                     case 4:
-                        
                             tempnumber = Float.valueOf(
                                 currentline.substring(
                                     commaPlacement.get(3)+1,currentline.length()
                                 )
                             );
                             profit.add(tempnumber);
-                            totalprofit = totalprofit + tempnumber;
-
                         break;
                     default:
                         break;
                     }
-
                 }
-                
-                
-                
-
             }
- 
         }
 
-         
+        NumberList rdSpendList = new NumberList(rdSpend);
+        NumberList marketSpendList = new NumberList(marketingSpend);
+        NumberList profitList = new NumberList(profit);
 
-        avgRND = totalRND / rdSpend.size();
-        avgMarketing = totalmarketing / marketingSpend.size();
-        avgProfit = totalprofit / profit.size();
-
-        float SDevProfit = SDfromsum(listElementsSquared(listMinusItsAverage(profit, avgProfit)));
-        float SDevMarketing = SDfromsum(listElementsSquared(listMinusItsAverage(marketingSpend, avgMarketing)));
-        float SDevRND = SDfromsum(listElementsSquared(listMinusItsAverage(rdSpend, avgRND)));
-
-        ArrayList<Float> zedProfitList = new ArrayList<>();
-        ArrayList<Float> zedRNDList = new ArrayList<>();
-        ArrayList<Float> zedMarketingList = new ArrayList<>();
-
-        zedProfitList = divideElementsbySD(listMinusItsAverage(profit, avgProfit), SDevProfit);
-        zedRNDList = divideElementsbySD(listMinusItsAverage(rdSpend, avgRND), SDevRND);
-        zedMarketingList = divideElementsbySD(listMinusItsAverage(marketingSpend, avgMarketing), SDevMarketing);
-
-        float covProfitRND = covariance(zedProfitList, zedRNDList);
-        float covProfitMarketing = covariance(zedProfitList, zedMarketingList);    
-        
-        float correlacionRNDProfit = covProfitRND / (rdSpend.size() - 1);
-        float correlacionMarketingProfit = covProfitMarketing / (marketingSpend.size() - 1);
-
-        System.out.println("la correlacion de pearson entre RD spent y profit es de: " + correlacionRNDProfit);
-        System.out.println("la correlacion de pearson entre Marketing spent y profit es de: " + correlacionMarketingProfit);
-
-        //System.out.println(rdSpend.toString());
-        //System.out.println(marketingSpend.toString());
-        //System.out.println(profit.toString());
+        System.out.println("la correlacion de pearson entre RD spent y profit es de: " + rdSpendList.getpearsonCorrelation(profitList));
+        System.out.println("la correlacion de pearson entre Marketing spent y profit es de: " + marketSpendList.getpearsonCorrelation(profitList));
 
     }
 }
