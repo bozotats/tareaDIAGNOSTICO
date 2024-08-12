@@ -30,7 +30,7 @@ public class Tarea1 {
                 if (currentline.charAt(i) == ',') {
                     columnNumber++;
                     commaPlacement.add(i);
-                    System.out.println(commaPlacement.toString());
+                    
                     switch(columnNumber) {
                     case 1:
                     tempnumber = Float.parseFloat(
